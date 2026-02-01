@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baking with the Gemini API</title>
+  <style>
+    /* Embedded styles for simplicity */
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .image-picker {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .image-choice {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .image-choice img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      transition: border 0.3s;
+    }
+
+    .image-choice input[type="radio"] {
+      display: none;
+    }
+
+    .image-choice input[type="radio"]:checked + img {
+      border: 2px solid #007BFF;
+    }
+
+    .prompt-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .prompt-box input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .prompt-box button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .prompt-box button:hover {
+      background-color: #0056b3;
+    }
+
+    .output {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 4px;
+      min-height: 100px;
+      border: 1px solid #ddd;
+    }
+
+    /* Image Preview Styles */
+    .image-preview {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      max-height: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    /* Upload Button Styles */
+    .upload-button {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .upload-button button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .upload-button button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>ImageMind</h1>
+    <h2>Uncovering Hidden Details in Pictures</h2>
+    <form>
+      <div class="image-picker">
+        <label class="image-choice">
+          <input type="radio" checked name="chosen-image" value="/baked_goods_1.jpg">
+          <img src="/baked_goods_1.jpg" alt="Baked Goods 1">
+        </label>
+        <label class="image-choice">
+          <input type="radio" name="chosen-image" value="/baked_goods_2.jpg">
+          <img src="/baked_goods_2.jpg" alt="Baked Goods 2">
+        </label>
+        <label class="image-choice">
+          <input type="radio" name="chosen-image" value="/baked_goods_3.jpg">
+          <img src="/baked_goods_3.jpg" alt="Baked Goods 3">
+        </label>
+        <!-- Custom Image Selection -->
+        <label class="image-choice">
+          <input type="radio" name="chosen-image" value="custom">
+          <span>Custom Image</span>
+        </label>
+      </div>
+
+      <!-- Upload Button -->
+      <div class="upload-button">
+        <button type="button" id="upload-button">Upload Your Image</button>
+        <input type="file" id="custom-image-upload" accept="image/*" style="display: none;">
+      </div>
+
+      <!-- Image Preview Section -->
+      <div class="image-preview">
+        <img id="image-preview" src="/baked_goods_1.jpg" alt="Selected Image">
+      </div>
+
+      <div class="prompt-box">
+        <input name="prompt" placeholder="Enter instructions here" type="text"
+          value="Provide a brief and well-structured information with proper headings and paragraphs about this image">
+        <button type="submit">Go</button>
+      </div>
+    </form>
+    <p class="output">(Results will appear here)</p>
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
